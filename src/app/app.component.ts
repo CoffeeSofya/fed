@@ -18,6 +18,7 @@ export class AppComponent implements OnInit {
     date: new FormControl(''),
     mestoVStructure: new FormControl('')
   });
+  dataFromForm = {};
 
   formControl = new FormControl();
   autoFilter: Observable<string[]> | undefined;
@@ -34,7 +35,8 @@ export class AppComponent implements OnInit {
     return this.data.Disciplina.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
   saveData() {
-    console.log(this.dataForDocument.value)
+    // console.log(this.dataForDocument.value)
+    this.dataFromForm = this.dataForDocument.value;
   }
 
   title = 'Thesis';
