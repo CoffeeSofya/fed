@@ -1,0 +1,84 @@
+:host {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  /*background-color: rgb(236, 239, 246);*/
+  height: 100vh;
+}
+/*.example-form {*/
+/*  min-width: 150px;*/
+/*  max-width: 500px;*/
+/*  width: 100%;*/
+/*}*/
+
+/*.example-full-width {*/
+/*  width: 100%;*/
+/*}*/
+
+
+
+ .mat-form-field {
+  width: 500px !important;
+   display: block;
+   /*padding-top: 11px;*/
+   padding-bottom: 22px;
+}
+ .mat-label {
+  width: 500px !important;
+}
+ .mat-select {
+  width: 500px !important;
+}
+
+ .mat-option {
+  width: 500px !important;
+}
+
+
+/*section {*/
+/*  display: table;*/
+/*}*/
+
+/*.example-label {*/
+/*  display: table-cell;*/
+/*  font-size: 14px;*/
+/*  margin-left: 8px;*/
+/*  min-width: 120px;*/
+/*}*/
+
+/*.example-button-row {*/
+/*  display: table-cell;*/
+/*  width: 490px;*/
+/*}*/
+
+/*.example-button-row .mat-button-base {*/
+/*  margin: 8px 8px 8px 0;*/
+/*}*/
+
+/*.example-flex-container {*/
+/*  display: flex;*/
+/*  justify-content: space-between;*/
+/*  flex-wrap: wrap;*/
+/*}*/
+
+/*.example-button-container {*/
+/*  display: flex;*/
+/*  justify-content: center;*/
+/*  width: 120px;*/
+/*}*/
+
+.mat-raised-button {
+  background-color: #496289;
+  color: white;
+}
+.wrapper {
+  margin: 0 auto;
+  padding-top: 40px;
+}
+.logo {
+  width: 300px;
+}
+.button-alignment{
+  display: flex;
+  justify-content: space-between;
+}

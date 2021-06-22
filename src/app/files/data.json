@@ -1,0 +1,14 @@
+{
+  "UrovenObraz": "Бакалавриат",
+  "Disciplina": "Информатика",
+  "NapravlPodg": [
+    {
+      "Kod": "09.03.02",
+      "Napravl": "Информационные системы и технологии"
+    }
+  ],
+  "GodNachalaPodg": 2018,
+  "VipuskKaf": "ГИС",
+  "KafRazrab": "ГИС",
+  "RabProgrDlya": "один из 5 вариантов"
+}
