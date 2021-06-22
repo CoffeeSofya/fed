@@ -1,7 +1,7 @@
 
 <!--appearance="fill"-->
 <div class="wrapper">
-  <div><img class="logo" src='../assets/kafedra.png'></div>
+  <div><img alt="" class="logo" src='../assets/kafedra.png'></div>
 <div [formGroup]="dataForDocument" class="formContainer">
 <mat-form-field >
   <mat-label>Уровень образования</mat-label>
@@ -20,7 +20,9 @@
 
 <mat-form-field>
 <!--  <mat-label>Дисциплина</mat-label>-->
-  <input matInput type="text" placeholder="Дисциплина" [formControl]="formControl" formControlName="disciplina" [matAutocomplete]="auto">
+  <label>
+    <input matInput type="text" placeholder="Дисциплина" formControlName="disciplina" [matAutocomplete]="auto">
+  </label>
 
   <mat-autocomplete #auto="matAutocomplete">
     <mat-option *ngFor="let item of autoFilter | async" [value]="item">
@@ -30,16 +32,11 @@
 
 </mat-form-field>
 
-<!--<mat-form-field  >-->
-<!--  <mat-label>Год начала подготовки</mat-label>-->
-<!--  <input matInput [matDatepicker]="picker">-->
-<!--&lt;!&ndash;  <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>&ndash;&gt;-->
-<!--  <mat-datepicker #picker startView="year"></mat-datepicker>-->
-<!--</mat-form-field>-->
-
   <mat-form-field>
     <mat-label>Год начала подготовки</mat-label>
-    <input formControlName="date" matInput type="text" >
+    <label>
+      <input formControlName="date" matInput type="text" >
+    </label>
   </mat-form-field>
 
 
