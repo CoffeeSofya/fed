@@ -11,31 +11,28 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-  serverData: JSON | undefined;
-  employeeData: JSON | undefined;
-  serverTO: any;
 
-  constructor(private httpClient: HttpClient) {
-  }
-  sayHi(data: any) {
-    this.httpClient.get('http://192.168.1.84:8080/').subscribe(data => {
-      this.serverTO = data as JSON;
-      console.log(this.serverData);
-    })
-  }
-  // sayHi() {
-  //   this.httpClient.get('http://192.168.1.84:8080/', {params: this.serverTO})
+  constructor(private httpClient: HttpClient) {}
+
+  // sayHi(data: any) {
+  //   this.httpClient.get('http://192.168.1.84:8080/').subscribe(data => {
+  //     this.serverTO = data as JSON;
+  //     console.log(this.serverData);
+  //   })
   // }
-
+  serverAdress = 'http://192.168.1.84:8080/';
+  sendPostRequest(data: any) {
+    return this.httpClient.post(this.serverAdress, JSON.stringify(data))
+  }
   saveData() {
     // console.log(this.dataForDocument.value)
-    this.serverTO = JSON.stringify(this.dataForDocument.value);
-    this.serverTO = this.dataForDocument.value;
-    // console.log(this.serverTO)
-    this.sayHi(this.serverTO);
+    // this.serverTO = JSON.stringify(this.dataForDocument.value);
+    // this.serverTO = this.dataForDocument.value;
+    // // console.log(this.serverTO)
+    // this.sayHi(this.serverTO);
+    console.log(this.dataForDocument.value)
+    this.sendPostRequest(this.dataForDocument.value);
   }
-
-
   dataForDocument = new FormGroup({
     urovenObraz: new FormControl(''),
     profil: new FormControl(''),
@@ -43,7 +40,7 @@ export class AppComponent implements OnInit {
     date: new FormControl(''),
     mestoVStructure: new FormControl('')
   });
-  dataFromForm = {};
+
 
   formControl = new FormControl();
   autoFilter: Observable<string[]> | undefined;
