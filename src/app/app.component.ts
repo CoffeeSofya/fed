@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import {AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators} from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { MatDatepicker } from '@angular/material/datepicker';
 import { Observable } from 'rxjs';
 import {map, startWith} from 'rxjs/operators';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-root',
@@ -10,6 +11,30 @@ import {map, startWith} from 'rxjs/operators';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
+  serverData: JSON | undefined;
+  employeeData: JSON | undefined;
+  serverTO: any;
+
+  constructor(private httpClient: HttpClient) {
+  }
+  sayHi(data: any) {
+    this.httpClient.get('http://192.168.1.84:8080/').subscribe(data => {
+      this.serverTO = data as JSON;
+      console.log(this.serverData);
+    })
+  }
+  // sayHi() {
+  //   this.httpClient.get('http://192.168.1.84:8080/', {params: this.serverTO})
+  // }
+
+  saveData() {
+    // console.log(this.dataForDocument.value)
+    this.serverTO = JSON.stringify(this.dataForDocument.value);
+    this.serverTO = this.dataForDocument.value;
+    // console.log(this.serverTO)
+    this.sayHi(this.serverTO);
+  }
+
 
   dataForDocument = new FormGroup({
     urovenObraz: new FormControl(''),
@@ -34,10 +59,7 @@ export class AppComponent implements OnInit {
     const filterValue = value.toLowerCase();
     return this.data.Disciplina.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
   }
-  saveData() {
-    console.log(this.dataForDocument.value)
-    this.dataFromForm = this.dataForDocument.value;
-  }
+
 
   title = 'Thesis';
   data = {
