@@ -31,7 +31,7 @@ export class AppComponent implements OnInit {
     // // console.log(this.serverTO)
     // this.sayHi(this.serverTO);
     console.log(this.dataForDocument.value)
-    this.sendPostRequest(this.dataForDocument.value);
+    this.sendPostRequest(this.dataForDocument.value).subscribe();
   }
   dataForDocument = new FormGroup({
     urovenObraz: new FormControl(''),
