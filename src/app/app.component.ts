@@ -23,6 +23,10 @@ export class AppComponent implements OnInit {
   serverAdress = 'http://192.168.1.84:8080/';
   sendPostRequest(data: any) {
     return this.httpClient.post(this.serverAdress, JSON.stringify(data))
+    // this.httpClient.get(this.serverAdress).subscribe(data => {
+    //    data;
+    //   // console.log(this.serverData);
+    // })
   }
   saveData() {
     // console.log(this.dataForDocument.value)
