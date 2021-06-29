@@ -1,25 +1,23 @@
-
-<!--appearance="fill"-->
 <div class="wrapper">
   <div><img alt="" class="logo" src='../assets/kafedra.png'></div>
 <div [formGroup]="dataForDocument" class="formContainer">
-<mat-form-field >
+
+<mat-form-field>
   <mat-label>Уровень образования</mat-label>
   <mat-select formControlName="urovenObraz">
     <mat-option *ngFor="let item of data.UrovenObraz; let i" [value]="i">{{item}}</mat-option>
   </mat-select>
 </mat-form-field>
 
-<mat-form-field  >
+<mat-form-field>
   <mat-label>Программа</mat-label>
   <mat-select formControlName="profil">
     <mat-option class="with" *ngFor="let item of data.Profil; let i" [value]="i">{{item}}</mat-option>
-    <!--    <mat-option value="two">Second option</mat-option>-->
   </mat-select>
 </mat-form-field>
 
 <mat-form-field>
-<!--  <mat-label>Дисциплина</mat-label>-->
+
   <label>
     <input matInput type="text" placeholder="Дисциплина" formControlName="disciplina" [matAutocomplete]="auto">
   </label>
@@ -35,16 +33,15 @@
   <mat-form-field>
     <mat-label>Год начала подготовки</mat-label>
     <label>
-      <input formControlName="date" matInput type="text" >
+      <input formControlName="date" matInput type="text">
     </label>
   </mat-form-field>
 
 
-<mat-form-field   >
+<mat-form-field>
   <mat-label>Место дисциплины в структуре образовательной программы</mat-label>
   <mat-select formControlName="mestoVStructure">
     <mat-option *ngFor="let item of data.MestoVStructure; let i" [value]="i">{{item}}</mat-option>
-    <!--    <mat-option value="two">Second option</mat-option>-->
   </mat-select>
 </mat-form-field>
 

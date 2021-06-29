@@ -13,89 +13,34 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 export class AppComponent implements OnInit {
 
   constructor(private httpClient: HttpClient) {}
-  // serverTO: any;
-  // sayHi(data: any) {
-  //   const token = 'my JWT';
-  //   const headers = new HttpHeaders().set('authorization', 'Bearer ' + token);
-  //
-  //   this.httpClient.get('http://192.168.1.84:8080/', {headers, responseType: 'blob' as 'json'}).subscribe(data => {
-  //       (response: any) => {
-  //         let dataType = response.type;
-  //         let binaryData = [];
-  //         binaryData.push(response);
-  //         let downloadLink = document.createElement('a');
-  //         downloadLink.href = window.URL.createObjectURL(new Blob(binaryData, {type: dataType}));
-  //         document.body.appendChild(downloadLink);
-  //         downloadLink.click();
-  //       };
-  //     }
-  //   )
-  // }
-  serverAdress = 'http://192.168.1.221:8080/';
-  // serverAdress = 'http://192.168.1.84:8080/';
+
+  serverAdress = 'http://192.168.1.104:8080/';
 
   sendPostRequest(data: any) {
-    let config = { headers: {'Content-Type': undefined},
-      transformRequest: identity
-    }
-    return this.httpClient.post(this.serverAdress, JSON.stringify(data), {headers: new HttpHeaders({ responseType: 'text'})})
-    // this.httpClient.get(this.serverAdress).subscribe(data => {
-    //    data;
-    //   // console.log(this.serverData);
-    // })
-
+    return this.httpClient.post(this.serverAdress, JSON.stringify(data),
+                                {headers: new HttpHeaders({ responseType: 'text'})})
   }
-  // downloadFile(route: string, filename: string = null): void{
-  //
-  //   const baseUrl = 'http://myserver/index.php/api';
-  //   const token = 'my JWT';
-  //   const headers = new HttpHeaders().set('authorization','Bearer '+token);
-  //   this.http.get(baseUrl + route,{headers, responseType: 'blob' as 'json'}).subscribe(
-  //     (response: any) =>{
-  //       let dataType = response.type;
-  //       let binaryData = [];
-  //       binaryData.push(response);
-  //       let downloadLink = document.createElement('a');
-  //       downloadLink.href = window.URL.createObjectURL(new Blob(binaryData, {type: dataType}));
-  //       if (filename)
-  //         downloadLink.setAttribute('download', filename);
-  //       document.body.appendChild(downloadLink);
-  //       downloadLink.click();
-  //     }
-  //   )
-  // }
-
 
   saveData() {
-    // console.log(this.dataForDocument.value)
-    // this.serverTO = JSON.stringify(this.dataForDocument.value);
-    // this.serverTO = this.dataForDocument.value;
-    // // console.log(this.serverTO)
-    // this.sayHi(this.serverTO);
-    console.log(this.dataForDocument.value)
-
     this.sendPostRequest(this.dataForDocument.value).subscribe();
-    // this.sayHi(this.dataForDocument.value)
   }
+
   dataForDocument = new FormGroup({
-    urovenObraz: new FormControl(''),
-    profil: new FormControl(''),
-    disciplina: new FormControl(''),
-    date: new FormControl(''),
-    mestoVStructure: new FormControl('')
+    urovenObraz: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]),
+    profil: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]),
+    disciplina: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(100)]),
+    date: new FormControl('', [Validators.required, Validators.minLength(3), Validators.maxLength(4)]),
+    mestoVStructure: new FormControl('', [Validators.required, Validators.minLength(2), Validators.maxLength(120)])
   });
 
 
-  formControl = new FormControl();
   autoFilter: Observable<string[]> | undefined;
-
   ngOnInit(): void {
-    this.autoFilter = this.formControl.valueChanges.pipe(
+    this.autoFilter = this.dataForDocument.controls.disciplina.valueChanges.pipe(
       startWith(''),
       map(value => this.mat_filter(value))
     );
   }
-
   private mat_filter(value: string): string[] {
     const filterValue = value.toLowerCase();
     return this.data.Disciplina.filter(option => option.toLowerCase().indexOf(filterValue) === 0);
@@ -103,36 +48,105 @@ export class AppComponent implements OnInit {
 
   downloadFile(){
     let link = window.document.createElement("a");
-    link.download = "test.docx";
-    link.href = "assets/test.docx";
+    link.download = "RPD.docx";
+    link.href = "assets/RPD.docx";
     link.click();
-
-    // let link = document.createElement('a');
-    // link.setAttribute('type', 'hidden');
-    // link.href = 'assets/';
-    // link.download = "test.docx";
-    // document.body.appendChild(link);
-    // link.click();
-    // link.remove();
   }
 
-  title = 'Thesis';
+
+  title = 'Формирование единого документа';
   data = {
-    UrovenObraz: ["Бакалавриат", "Магистатура"],
+    UrovenObraz: ["Бакалавриат", "Магистратура"],
     Profil: ["Информационные технологии в дизайне", "Информационная поддержка жизненного цикла изделий и инфраструктуры"],
-    Disciplina: ["История",
-      "Русский язык и культура речи",
-      "Физическая культура и спорт",
-      "Иностранный язык",
-      "Дискретная математика",
-      "Информационные технологии",
-      "Математика",
-      "Графические информационные технологии",
-      "Философия",
-      "Физические основы информационно-телекоммуникационных систем",
-      "Алгоритмы и структуры данных",
+    Disciplina: [
+      "История",
       "WEB-технологии",
-      "Объектно-ориентированное программирование"
+      "Аддитивные технологии",
+      "Администрирование информационных систем",
+      "Алгоритмы и структуры данных",
+      "Архитектура информационных систем",
+      "Базы данных",
+      "Безопасность жизнедеятельности",
+      "Большие данные",
+      "Визуализация объектов",
+      "Вычислительная геометрия",
+      "Геоинформационные системы",
+      "Геометрическое моделирование",
+      "Графические информационные технологии",
+      "Графический дизайн интерфейсов",
+      "Дизайн в WEB-ресурсах",
+      "Дискретная математика",
+      "Дистанционные образовательные ресурсы",
+      "Дополненная реальность",
+      "Инженерия информационных систем",
+      "Иностранный язык",
+      "Иностранный язык делового общения",
+      "Инструментальные средства информационных систем в дизайне",
+      "Интегрированная логистическая поддержка",
+      "Интеллектуальные системы и технологии",
+      "Интернет вещей",
+      "Интерфейсы программного продукта",
+      "Инфографика",
+      "Инфокоммуникационные системы и сети",
+      "Информационная поддержка жизненного цикла изделий",
+      "Информационная поддержка жизненного цикла инфраструктуры",
+      "Информационные технологии",
+      "Информационные технологии анимационного моделирования",
+      "История",
+      "Компьютерный дизайн",
+      "Концептуальный дизайн",
+      "Логика и методология науки",
+      "Математика",
+      "Методы и средства защиты информации",
+      "Методы и средства передачи данных в профессиональных программных средах дизайна",
+      "Методы и средства проектирования информационных систем и технологий",
+      "Методы искусственного интеллекта",
+      "Методы оценки графического интерфейса",
+      "Модели информационных процессов и систем",
+      "Моделирование архитектурных объектов",
+      "Моделирование объектов дизайна",
+      "Моделирование систем",
+      "Мультимедиа технологии",
+      "Научная публицистика",
+      "Объектно-ориентированное программирование",
+      "Организация стартапов в информационных технологиях",
+      "Программирование на языках высокого уровня",
+      "Программирование на языке C++",
+      "Программирование на языке Java",
+      "Программная инженерия",
+      "Проектирование информационных ресурсов",
+      "Проектирование мобильных приложений",
+      "Проектирование мультимедийных приложений",
+      "Разработка API-приложений",
+      "Разработка WEB-приложений",
+      "Разработка мобильных приложений",
+      "Разработка приложений для профессиональных пакетов дизайна",
+      "Разработка цифрового прототипа изделия",
+      "Русский язык и культура речи",
+      "Системы динамического тестирования",
+      "Системы поддержки принятия решений",
+      "Системы управления контентом",
+      "Социальные и философские проблемы информационного общества",
+      "Социология",
+      "Специальные главы математики",
+      "Специальные главы математики в вычислительной геометрии",
+      "Стандарты графического дизайна",
+      "Теория вероятностей и математическая статистика",
+      "Теория информации, данные, знания",
+      "Технологии виртуального моделирования",
+      "Технологии подготовки графических документов",
+      "Технологии программирования",
+      "Технологии проектирования информационных систем и технологий",
+      "Технологии процессов информационного обмена",
+      "Управление IТ-проектами",
+      "Управление данными",
+      "Управление проектными данными",
+      "Физическая культура и спорт",
+      "Физические основы информационно-телекоммуникационных систем",
+      "Философия",
+      "Цифровое производство",
+      "Экономико-математические модели управления",
+      "Элективные курсы по физической культуре и спорту"
     ],
     MestoVStructure: [
       "Для дисциплин философия, история, иностранный язык, безопасность жизнедеятельности, физическая культура и спорт",
@@ -144,4 +158,6 @@ export class AppComponent implements OnInit {
 }
 
 }
+
+
 

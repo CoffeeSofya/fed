@@ -25,12 +25,8 @@ import { HttpClientModule } from '@angular/common/http';
     ReactiveFormsModule,
     MatInputModule,
     MatAutocompleteModule,
-    // MatDatepicker
-    MatDatepickerModule,
-    MatNativeDateModule,
     MatButtonModule,
     HttpClientModule
-
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   providers: [
